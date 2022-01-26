@@ -49,6 +49,7 @@ router.get('/', csrfProtection, (req, res, next) => {
 
       // If authentication can't be skipped we MUST show the login UI.
       res.render('login', {
+        google_client_id: process.env.GOOGLE_CLIENT_ID,
         csrfToken: req.csrfToken(),
         challenge: challenge,
         action: urljoin(process.env.BASE_URL || '', '/login'),

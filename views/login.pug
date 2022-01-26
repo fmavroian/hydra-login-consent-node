@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1(id="login-title") Please log in
-    <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=code&state=#{challenge}&redirect_uri=http://localhost:3000/login&client_id=275172652442-al0s065t21ukr87206cq3m2gbsam59no.apps.googleusercontent.com"> Google login </a> <br>
+    <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=code&state=#{challenge}&redirect_uri=http://localhost:3000/login&client_id=#{google_client_id}"> Google login </a> <br>
     <a href="https://oa.connect.auone.jp/net/id/hny_oidc_rt_net/cca?ID=OIDCAcpt&response_type=code&client_id=AAOyGgAAAX_n4kcI&redirect_uri=https://test3.id.auone.jp&scope=openid&state=#{challenge}&nonce=&code_challenge_method=S256%27"> Kddi Login </a>
     p=challenge
     if error
