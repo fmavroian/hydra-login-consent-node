@@ -14,7 +14,12 @@ router.get('/', csrfProtection, (req, res, next) => {
   const query = url.parse(req.url, true).query
 
   // The challenge is used to fetch information about the login request from ORY Hydra.
-  const challenge = String(query.login_challenge)
+  let challenge = String(query.login_challenge)
+  const state = String(query.state)  
+  if(state != "undefined" && state !== null) {
+    challenge = state
+  }
+
   if (!challenge) {
     next(new Error('Expected a login challenge to be set but received none.'))
     return
@@ -57,7 +62,6 @@ router.get('/', csrfProtection, (req, res, next) => {
 router.post('/', csrfProtection, (req, res, next) => {
   // The challenge is now a hidden input field, so let's take it from the request body instead
   const challenge = req.body.challenge
-
   // Let's see if the user decided to accept or reject the consent request..
   if (req.body.submit === 'Deny access') {
     // Looks like the consent request was denied by the user
