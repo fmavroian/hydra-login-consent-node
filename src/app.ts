@@ -8,6 +8,8 @@ import routes from './routes'
 import login from './routes/login'
 import logout from './routes/logout'
 import consent from './routes/consent'
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express()
 
