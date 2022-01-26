@@ -1,5 +1,6 @@
 import { AdminApi, Configuration } from '@oryd/hydra-client'
-
+const dotenv = require('dotenv');
+dotenv.config();
 const baseOptions: any = {}
 
 if (process.env.MOCK_TLS_TERMINATION) {
