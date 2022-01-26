@@ -2,6 +2,9 @@ extends layout
 
 block content
     h1(id="login-title") Please log in
+    <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&include_granted_scopes=true&response_type=code&state=#{challenge}&redirect_uri=http://localhost:3000/login&client_id=275172652442-al0s065t21ukr87206cq3m2gbsam59no.apps.googleusercontent.com"> Google login </a> <br>
+    <a href="https://oa.connect.auone.jp/net/id/hny_oidc_rt_net/cca?ID=OIDCAcpt&response_type=code&client_id=AAOyGgAAAX_n4kcI&redirect_uri=https://test3.id.auone.jp&scope=openid&state=#{challenge}&nonce=&code_challenge_method=S256%27"> Kddi Login </a>
+    p=challenge
     if error
         p.
             #{error}
@@ -24,3 +27,22 @@ block content
         br
         input(type="submit", id="accept", name="submit", value="Log in")
         input(type="submit", id="reject", name="submit", value="Deny access")
+    script(type='text/javascript').
+        const queryString = window.location.search;
+        const parameters = new URLSearchParams(queryString);
+        const paramChallenge = parameters.get('login_challenge');
+        const challenge = localStorage.getItem('challenge');
+        console.log(challenge)
+        if (!paramChallenge && challenge) {
+
+      
+        }
+        if(paramChallenge && challenge && paramChallenge !== challenge ){
+            localStorage.setItem('challenge', value);
+        }
+        // check if there is a challenge in url
+        // check if there is a challenge in storage
+        // check if they are the same
+            // if not store new challenge
+            // if yes continue
+        // if there is no challenge in url but there is one in storage set param from storage
